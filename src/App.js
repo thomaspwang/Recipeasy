@@ -4,10 +4,10 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
 import Home from './pages';
-import Ingredients from './pages/ingredients';
-import Login from './pages/login';
-import Saved from './pages/saved';
-import Main from './pages/main';
+import Ingredients from './pages/ingredients.js';
+import Login from './pages/login.js';
+import Saved from './pages/saved.js';
+import Main from './pages/main.js';
   
 function App() {
 return (

@@ -18,6 +18,9 @@ let UserSchema = new Schema({
     health_problems: {
         type: [],
     },
+    allergies: {
+        type: [],
+    },
     saved_recipes: {
         type: [],
     }
