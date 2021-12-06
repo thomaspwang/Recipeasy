@@ -61,6 +61,17 @@ router.get('/health-problems', (req, res) => {
     })
 });
 
+router.get('/allergies', (req, res) => {
+    var username = req.query.username;
+    User.findOne({username: username}).then(user => {
+      if (!user) {
+          return res.status(400).json({message: "User not found "});
+      }
+      const allergies = user.allergies
+      res.status(201).send({"Dietary Restrictions":allergies});
+    })
+});
+
 router.post('/ingredients', (req, res) => {
   const username = req.body.username;
   const ingredients = req.body.ingredients;
@@ -75,7 +86,7 @@ router.post('/ingredients', (req, res) => {
     })
 });
 
-router.post('/dietary-restrictions', (req, res, next) => {
+router.post('/dietary-restrictions', (req, res) => {
     var username = req.body.username;
     var dietary_res = req.body.dietary_restrictions;
     User.findOne({username: username}).then(user => {
@@ -90,7 +101,7 @@ router.post('/dietary-restrictions', (req, res, next) => {
 });
 
 
-router.post('/health-problems', (req, res, next) => {
+router.post('/health-problems', (req, res) => {
     var username = req.body.username;
     var health_problems = req.body.health_problems;
     User.findOne({username: username}).then(user => {
@@ -98,6 +109,20 @@ router.post('/health-problems', (req, res, next) => {
           return res.status(400).json({message: "User not found "});
       }
       user.health_problems = health_problems;
+      user.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+    })
+});
+
+router.post('/allergies', (req, res) => {
+    var username = req.body.username;
+    var allergies = req.body.allergies;
+    User.findOne({username: username}).then(user => {
+      if (!user) {
+          return res.status(400).json({message: "User not found "});
+      }
+      user.allergies = allergies;
       user.save()
       .then(user => res.json(user))
       .catch(err => console.log(err));
