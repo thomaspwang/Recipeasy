@@ -21,7 +21,7 @@ const Item = ({
           border: "none",
           outline: "none",
           backgroundColor: "transparent",
-          color: "white",
+          color: "black",
           fontSize: "20px",
         }}
       />

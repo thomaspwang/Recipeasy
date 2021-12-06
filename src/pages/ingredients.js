@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ingredients.css";
 import Item from "../components/Item.js";
+import Slideshow from "../components/Slideshow.js"; 
 import { v4 as uuidv4 } from "uuid";
 
 const arr = () => {
@@ -37,6 +38,7 @@ function Ingredients() {
 
   return (
     <div className="App">
+       <Slideshow/>
       <h1>Ingredients</h1>
       <form onSubmit={handleSubmit}>
         <input
