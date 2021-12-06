@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/User");
 
-router.post('/register', (req, res) => {
+router.post("/register", (req, res) => {
     User.findOne({ username: req.body.username }).then(user => {
         if (user) {
             return res.json({ username : "User already exists"})
         } else {
+            console.log(req.body);
             const newUser = new User({
                 username : req.body.username,
                 password :  req.body.password,
@@ -43,7 +44,7 @@ router.get('/dietary-restrictions', (req, res) => {
           return res.status(400).json({message: "User not found "});
       }
       
-      var dietary_res = user.dietary_restrictions;
+      const dietary_res = user.dietary_restrictions;
       res.status(201).send({"Dietary Restrictions": dietary_res});
   })
 });
@@ -55,7 +56,7 @@ router.get('/health-problems', (req, res) => {
       if (!user) {
           return res.status(400).json({message: "User not found "});
       }
-      var health_problems = user.health_problems
+      const health_problems = user.health_problems
       res.status(201).send({"Dietary Restrictions":health_problems});
     })
 });
@@ -74,7 +75,7 @@ router.post('/ingredients', (req, res) => {
     })
 });
 
-router.post('/dietary-problems', (req, res, next) => {
+router.post('/dietary-restrictions', (req, res, next) => {
     var username = req.body.username;
     var dietary_res = req.body.dietary_restrictions;
     User.findOne({username: username}).then(user => {
@@ -82,8 +83,9 @@ router.post('/dietary-problems', (req, res, next) => {
           return res.status(400).json({message: "User not found "});
       }
       user.dietary_restrictions = dietary_res;
-      user.save();
-      res.status(201).send();
+      user.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
       })
 });
 
@@ -96,9 +98,10 @@ router.post('/health-problems', (req, res, next) => {
           return res.status(400).json({message: "User not found "});
       }
       user.health_problems = health_problems;
-      user.save();
-      res.status(201).send();
-      })
+      user.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+    })
 });
 
 module.exports = router;
