@@ -5,7 +5,7 @@ const User = require("../models/User");
 router.post("/register", (req, res) => {
     User.findOne({ username: req.body.username }).then(user => {
         if (user) {
-            return res.json({ username : "User already exists"})
+            return res.status(400).json({ username : "User already exists"})
         } else {
             console.log(req.body);
             const newUser = new User({
@@ -21,6 +21,16 @@ router.post("/register", (req, res) => {
             .then(user => res.json(user))
             .catch(err => console.log(err));
         }
+    })
+})
+
+
+router.get("/user", (req, res) => {
+    User.findOne({ username: req.query.username }).then(user => {
+        if (!user) {
+            return res.status(400).json({ username : "User does not exist"})
+        }  
+        res.send(user);
     })
 })
 
