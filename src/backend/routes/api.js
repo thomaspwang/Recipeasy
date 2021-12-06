@@ -44,7 +44,7 @@ router.get('/dietary-restrictions', (req, res) => {
           return res.status(400).json({message: "User not found "});
       }
       
-      var dietary_res = user.dietary_restrictions;
+      const dietary_res = user.dietary_restrictions;
       res.status(201).send({"Dietary Restrictions": dietary_res});
   })
 });
@@ -56,7 +56,7 @@ router.get('/health-problems', (req, res) => {
       if (!user) {
           return res.status(400).json({message: "User not found "});
       }
-      var health_problems = user.health_problems
+      const health_problems = user.health_problems
       res.status(201).send({"Dietary Restrictions":health_problems});
     })
 });
@@ -83,8 +83,9 @@ router.post('/dietary-problems', (req, res, next) => {
           return res.status(400).json({message: "User not found "});
       }
       user.dietary_restrictions = dietary_res;
-      user.save();
-      res.status(201).send();
+      user.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
       })
 });
 
@@ -97,9 +98,10 @@ router.post('/health-problems', (req, res, next) => {
           return res.status(400).json({message: "User not found "});
       }
       user.health_problems = health_problems;
-      user.save();
-      res.status(201).send();
-      })
+      user.save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+    })
 });
 
 module.exports = router;
