@@ -43,7 +43,7 @@ router.get('/dietary-restrictions', (req, res) => {
           return res.status(400).json({message: "User not found "});
       }
       
-      var dietary_res = user.dietary_restrictions;
+      const dietary_res = user.dietary_restrictions;
       res.status(201).send({"Dietary Restrictions": dietary_res});
   })
 });
