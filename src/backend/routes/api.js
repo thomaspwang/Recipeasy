@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/User");
 
-router.post('/register', (req, res) => {
+router.post("/register", (req, res) => {
     User.findOne({ username: req.body.username }).then(user => {
         if (user) {
             return res.json({ username : "User already exists"})
         } else {
+            console.log(req.body);
             const newUser = new User({
                 username : req.body.username,
                 password :  req.body.password,

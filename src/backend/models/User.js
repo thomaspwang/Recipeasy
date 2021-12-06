@@ -1,8 +1,8 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Create schema for todo
-const UserSchema = new Schema({
+let UserSchema = new Schema({
     username: {
         type: String,
     },
@@ -23,7 +23,5 @@ const UserSchema = new Schema({
     }
 });
 
-// Create model for todo
-const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+module.exports = mongoose.model('User', UserSchema);
