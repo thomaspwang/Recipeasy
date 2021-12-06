@@ -75,7 +75,7 @@ router.post('/ingredients', (req, res) => {
     })
 });
 
-router.post('/dietary-problems', (req, res, next) => {
+router.post('/dietary-restrictions', (req, res, next) => {
     var username = req.body.username;
     var dietary_res = req.body.dietary_restrictions;
     User.findOne({username: username}).then(user => {
