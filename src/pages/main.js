@@ -1,11 +1,10 @@
 import React from "react";
+import Sidebar from "../components/Sidebar.js"; 
   
 const Main = () => {
   return (
     <div>
-      <h1>
-        recipes shown here
-      </h1>
+      <Sidebar/>
     </div>
   );
 };
