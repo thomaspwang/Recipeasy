@@ -1,0 +1,20 @@
+.item {
+    background-color: #6c867a;
+    border-radius: 0.3em;
+    margin: 10px 50px 10px 50px;
+}
+.ingredient {
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 1.3rem;
+    height: 2.4rem;
+    width: 5rem;
+    text-align: center;
+    background-color: #6c867a;
+    border-radius: 0.3em; 
+    font-family: Brushstroke;
+    vertical-align: center;
+    
+    
+}
