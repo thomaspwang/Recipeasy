@@ -42,13 +42,13 @@ function Ingredients() {
       <h1>Ingredients</h1>
       <form onSubmit={handleSubmit}>
         <input
-          className="input"
+          className="inputIngredients"
           type="text"
           value={item}
          
           onChange={handleChange}
         />
-        <button className="btn" type="submit">
+        <button className="btnIngredients" type="submit">
           Add
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
