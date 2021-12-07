@@ -8,6 +8,7 @@ const Home = () => {
   return (
     <div>
        <Slideshow/>
+       <h1> WELCOME</h1>
     </div>
   );
 };

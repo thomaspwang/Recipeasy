@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ingredients.css";
 import Item from "../components/Item.js";
 import Slideshow from "../components/Slideshow.js"; 
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const arr = () => {
@@ -36,6 +37,12 @@ function Ingredients() {
     setItem(e.target.value);
   };
 
+  const navigate = useNavigate();
+  
+  const handleRoute = () =>{ 
+    navigate("/main");
+  }
+
   return (
     <div className="App">
        <Slideshow/>
@@ -50,6 +57,9 @@ function Ingredients() {
         />
         <button className="btn" type="submit">
           Add
+        </button>
+        <button className="btn" onClick={handleRoute}>
+          Find Recipes
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
