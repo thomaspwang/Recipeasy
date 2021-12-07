@@ -7,9 +7,6 @@ const Navbar = () => {
     <>
       <Nav>
         <NavMenu>
-          <NavLink to="/ingredients" activeStyle>
-            Add Ingredients
-          </NavLink>
           <NavLink to="/main" activeStyle>
             Recipes
           </NavLink>

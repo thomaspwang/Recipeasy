@@ -17,13 +17,7 @@ const Item = ({
       <input
         type="text"
         value={item}
-        style={{
-          border: "none",
-          outline: "none",
-          backgroundColor: "transparent",
-          color: "black",
-          fontSize: "20px",
-        }}
+        className = "ingredient"
       />
 
       <img
