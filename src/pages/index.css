@@ -1,0 +1,42 @@
+.App {
+    text-align: center;
+    font-family: Brushstroke; 
+  }
+  
+  .input {
+    background-color: whitesmoke;
+    color: black;
+    padding: 1em 2em;
+    border-radius: 0.6em;
+    border: none;
+    outline: none;
+    position: relative;
+    margin: 5px;
+    height:1rem;
+    width: 30rem;
+  }
+  
+  .btn {
+    font-family: Brushstroke;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 2.4rem;
+    border-radius: 0.6em;
+    border: none;
+    background-color: rgb(108, 134, 122);
+    color: black;
+    margin: .5rem ;
+  }
+  .btn:hover {
+    filter: brightness(110%);
+    border: none;
+    outline: 0;
+  }
+  .items {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    
+  }
