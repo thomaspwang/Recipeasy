@@ -1,22 +1,6 @@
-import React from "react";
+import React from 'react';
+// import {ReactComponent as Logo} from '../assets/instagram.svg'
 import './login.css';
-
-// const Login = () => {
-//   return (
-//     <div>
-//       <h1>
-//         login/signup
-//       </h1>
-//     </div>
-//   );
-// };
-
-
-
-
-
-// import {ReactComponent as Logo} from '../../assets/instagram.svg'
-
 class Login extends React.Component{
     state={
         email:'',
@@ -35,13 +19,14 @@ class Login extends React.Component{
     render(){
         return(
             <div className='div-login'>
-                <div className='div-login-logo'>
-                </div>
+                {/* <div className='div-login-logo'>
+                    <Logo/>
+                </div> */}
                 <div>
                     <form onSubmit = {this.handleSubmit}>
-                        <input className="inputLogin" type='email' name='email' placeholder='email...' required onChange={this.handleChange}/>
-                        <input className="inputLogin" type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}/>
-                        <button className="buttonLogin" onSubmit={this.handleSubmit}>Log In</button>
+                        <input className='inputLogin' type='email' name='email' placeholder='email...' required onChange={this.handleChange}/>
+                        <input className='inputLogin' type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}/>
+                        <button className='btnLogin' onSubmit={this.handleSubmit}>Log In</button>
                     </form>
                 </div>
             </div>

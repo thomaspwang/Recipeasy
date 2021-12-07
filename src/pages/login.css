@@ -18,7 +18,7 @@
     align-self: center;
 }
 
-.inputLogin {
+.inputLogin{
     width: 95%;
     border: 1px solid #dbdbdb;
     padding: 5px;
@@ -27,9 +27,9 @@
     background-color: #fafafa;
     box-shadow: none;
     font-family: 'Open Sans Condensed', sans-serif;
-  }
+}
 
-.buttonLogin{
+.btnLogin{
     width: 100%;
     margin: 5px 0;
     background-color: dodgerblue;
