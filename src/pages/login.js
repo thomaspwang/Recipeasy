@@ -22,6 +22,7 @@ class Login extends React.Component{
                 {/* <div className='div-login-logo'>
                     <Logo/>
                 </div> */}
+                <h1>Login</h1>
                 <div>
                     <form onSubmit = {this.handleSubmit}>
                         <input className='inputLogin' type='email' name='email' placeholder='email...' required onChange={this.handleChange}/>

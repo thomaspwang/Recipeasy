@@ -7,6 +7,9 @@ const Navbar = () => {
     <>
       <Nav>
         <NavMenu>
+        <NavLink to="/" activeStyle>
+            Home
+          </NavLink>
           <NavLink to="/main" activeStyle>
             Recipes
           </NavLink>
@@ -23,4 +26,3 @@ const Navbar = () => {
 };
   
 export default Navbar;
- 

@@ -29,9 +29,8 @@
   }
   .items {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: start;
-    margin-left: 10rem;
-    margin-right: 10rem;
-    
+
+
   }
