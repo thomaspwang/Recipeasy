@@ -7,6 +7,7 @@ import Home from './pages';
 import Login from './pages/login.js';
 import Saved from './pages/saved.js';
 import Main from './pages/main.js';
+import Ingredients from './pages/ingredients.js';
   
 function App() {
 return (
@@ -14,6 +15,7 @@ return (
     <Navbar />
     <Routes>
         <Route exact path='/' exact element={<Home />} />
+        <Route path='/ingredients' element={<Ingredients/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/saved' element={<Saved/>} />
         <Route path='/main' element={<Main/>} />
