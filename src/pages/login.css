@@ -1,6 +1,6 @@
 .div-login{
-    width:200px;
-    height:300px;
+    width:400px;
+    height:400px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -9,7 +9,7 @@
     border-radius: 5px;
     padding: 20px;
     margin-top: 10vh;
-    background-color: white;
+    background-color: rgba(109, 173, 123, 0.479);
 } 
 
 .div-login-logo{
@@ -32,11 +32,11 @@
 .btnLogin{
     width: 100%;
     margin: 5px 0;
-    background-color: dodgerblue;
+    background-color: whitesmoke;
     font-family: 'Open Sans Condensed', sans-serif;
     padding: 5px;
     font-weight: 600;
     border: none;
-    color: white;
+    color: rgba(109, 173, 123, 0.479);
     border-radius: 5px;
 }

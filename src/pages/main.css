@@ -1,4 +1,6 @@
 .one {
     display:flex;
     flex-wrap: wrap;
+    float: right;
+    padding-left: 240px;
 }
