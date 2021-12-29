@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <div>
       <div><Sidebar/></div>
-      <div className="one" ><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/></div>
+      <div className="one" ><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/><Recipes/></div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 .one {
-    float: right;
-    display: grid;
-    grid-template-columns: (3, 1fr);
+    display:flex;
+    flex-wrap: wrap;
 }
