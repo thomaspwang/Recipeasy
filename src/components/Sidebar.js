@@ -11,7 +11,7 @@ import {
 } from "react-pro-sidebar";
 
 
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+import {FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
 //import sidebar css from react-pro-sidebar module and our custom css 
 import "react-pro-sidebar/dist/css/styles.css";
