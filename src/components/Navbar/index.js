@@ -17,7 +17,7 @@ const Navbar = () => {
             Saved
           </NavLink>
           <NavLink to="/login" activeStyle>
-            Login
+            Login/Sign up
           </NavLink>
         </NavMenu>
         <div style={{float:"right", paddingTop: "10px"}}>Hello [User] !</div>

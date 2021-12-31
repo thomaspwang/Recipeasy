@@ -22,12 +22,13 @@ class Login extends React.Component{
                 {/* <div className='div-login-logo'>
                     <Logo/>
                 </div> */}
-                <h1>Login</h1>
+                <h1>Welcome!</h1>
                 <div>
                     <form onSubmit = {this.handleSubmit}>
                         <input className='inputLogin' name='name' placeholder='username...' required onChange={this.handleChange}/>
                         <input className='inputLogin' type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}/>
                         <button className='btnLogin' onSubmit={this.handleSubmit}>Log In</button>
+                        <button className='btnLogin' onSubmit={this.handleSubmit}>Sign Up</button>
                     </form>
                 </div>
             </div>
