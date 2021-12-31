@@ -3,6 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+const linkStyle = {
+  textDecoration: "none",
+  color: 'black'
+};
 
 const Recipes = () => {
   //pull from api?
@@ -11,7 +15,9 @@ const Recipes = () => {
       <Card.Img variant="top" src="https://source.unsplash.com/user/erondu/600x400" />
       <Card.Body>
         <Card.Title>
-          <Link to="/recipe">Name</Link>
+          <Link to="/recipe" style={linkStyle}>
+            Name
+            </Link>
           </Card.Title>
         <Card.Text>
           Some Custom text one can write here
