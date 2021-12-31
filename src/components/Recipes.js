@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 
 const linkStyle = {
   textDecoration: "none",
-  color: 'black'
+  color: 'black',
+
 };
 
 const Recipes = () => {
@@ -19,7 +20,7 @@ const saveIconClick = () => {
   //pull from api?
     return (
         <Card style={{ width: '15.5rem'}}>
-      <Card.Img variant="top" src="https://source.unsplash.com/user/erondu/600x400" />
+      <Link to="/recipe" style={linkStyle}><Card.Img variant="top" src="https://source.unsplash.com/user/erondu/600x400" /></Link>
       <Card.Body>
         <Card.Title>
           <Link to="/recipe" style={linkStyle}>
@@ -49,9 +50,9 @@ const saveIconClick = () => {
             
     
           </Card.Title>
-        <Card.Text>
+          <Link to="/recipe" style={linkStyle}><Card.Text>
           Some Custom text one can write here
-        </Card.Text>
+        </Card.Text></Link>
       </Card.Body>
     </Card>
       );
