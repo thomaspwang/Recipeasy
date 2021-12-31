@@ -20,6 +20,7 @@ const Navbar = () => {
             Login
           </NavLink>
         </NavMenu>
+        <div style={{float:"right", paddingTop: "10px"}}>Hello [User] !</div>
       </Nav>
       </>
   );

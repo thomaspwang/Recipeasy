@@ -3,7 +3,7 @@ import React from 'react';
 import './login.css';
 class Login extends React.Component{
     state={
-        email:'',
+        username:'',
         pwd:''
     }
 
@@ -25,7 +25,7 @@ class Login extends React.Component{
                 <h1>Login</h1>
                 <div>
                     <form onSubmit = {this.handleSubmit}>
-                        <input className='inputLogin' type='email' name='email' placeholder='email...' required onChange={this.handleChange}/>
+                        <input className='inputLogin' name='name' placeholder='username...' required onChange={this.handleChange}/>
                         <input className='inputLogin' type='password' name='pwd' placeholder='password...' required onChange={this.handleChange}/>
                         <button className='btnLogin' onSubmit={this.handleSubmit}>Log In</button>
                     </form>
