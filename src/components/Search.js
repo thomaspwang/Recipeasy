@@ -25,7 +25,7 @@ function Search() {
       setList([...list, newItem]);
       setItem("");
       setError("");
-    } else if (!item) setError("Item cannot be blank.");
+    } else if (!item) setError("");
   };
 
   React.useEffect(() => {
