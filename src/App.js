@@ -15,12 +15,14 @@ return (
     <Router>
     <Navbar />
     <Routes>
-        <Route exact path='/' exact element={<Home />} />
-        <Route path='/ingredients' element={<Ingredients/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/saved' element={<Saved/>} />
-        <Route path='/main' element={<Main/>} />
-        <Route path='/recipe' element={<Recipe/>} />
+        <Switch>
+            <Route exact path='/' exact element={<Home />} />
+            <Route path='/ingredients' element={<Ingredients/>} />
+            <Route path='/login' element={<Login/>} />
+            <Route path='/saved' element={<Saved/>} />
+            <Route path='/main' element={<Main/>} />
+            <Route path='/recipe' element={<Recipe/>} />
+        </Switch>
     </Routes>
     </Router>
 );
