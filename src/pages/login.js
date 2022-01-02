@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import {ReactComponent as Logo} from '../assets/instagram.svg'
-
+import { useNavigate } from "react-router-dom";
 import './login.css';
 
 
@@ -16,15 +16,15 @@ function Login(props) {
     // }
    
     // handle button click of login form
+    //https://www.cluemediator.com/login-app-create-login-form-in-reactjs-using-secure-rest-api
+    let history = useNavigate();
+
     const handleLogin = () => {
-      props.history.push('/');
+      history('/main');
     }
    
     return (
         <div className='div-login'>
-                {/* <div className='div-login-logo'>
-                    <Logo/>
-                </div> */}
                 <h1>Welcome!</h1>
                 <div>
             Username<br />
