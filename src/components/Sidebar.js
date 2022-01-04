@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Search from "./Search.js";
+import Filter from "../components/Filter.js";
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -39,14 +40,7 @@ const Sidebar = () => {
               {/* small and big change using menucollapse state */}
               <p>{menuCollapse ? "Add" : "Add Ingredients"}</p>
             </div>
-            <div className="closemenu" onClick={menuIconClick}>
-                {/* changing menu collapse icon on click */}
-              {menuCollapse ? (
-                <FiArrowRightCircle/>
-              ) : (
-                <FiArrowLeftCircle/>
-              )}
-            </div>
+            <Filter/>
           </SidebarHeader>
           <SidebarContent>
           <p>{menuCollapse ? "" : <Search /> }</p>
