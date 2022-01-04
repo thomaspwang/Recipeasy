@@ -1,13 +1,13 @@
 import React from "react";
-import { Nav, NavLink, NavMenu } 
-    from "./NavbarElements";
-  
+import { Nav, NavLink, NavMenu }
+  from "./NavbarElements";
+
 const Navbar = () => {
   return (
     <>
       <Nav>
         <NavMenu>
-        <NavLink to="/" activeStyle>
+          <NavLink to="/" activeStyle>
             Home
           </NavLink>
           <NavLink to="/main" activeStyle>
@@ -20,10 +20,10 @@ const Navbar = () => {
             Login/Sign up
           </NavLink>
         </NavMenu>
-        <div style={{float:"right", paddingTop: "10px"}}>Hello [User] !</div>
+        <div style={{ float: "right", paddingTop: "10px" }}>Hello [User] !</div>
       </Nav>
-      </>
+    </>
   );
 };
-  
+
 export default Navbar;

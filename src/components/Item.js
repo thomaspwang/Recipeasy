@@ -17,14 +17,14 @@ const Item = ({
       <input
         type="text"
         value={item}
-        className = "ingredient"
+        className="ingredient"
       />
 
       <img
-        style={{ cursor: "pointer"}}
+        style={{ cursor: "pointer" }}
         onClick={() => remove(id)}
-        src="https://www.i2symbol.com/images/symbols/math/circled_times_u2297_icon_256x256.png" 
-        width= "25"
+        src="https://www.i2symbol.com/images/symbols/math/circled_times_u2297_icon_256x256.png"
+        width="25"
         height="25"
         alt="delete item"
       />

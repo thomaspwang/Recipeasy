@@ -37,8 +37,8 @@ function Search() {
   };
 
   const navigate = useNavigate();
-  
-  const handleRoute = () =>{ 
+
+  const handleRoute = () => {
     navigate("/main");
   }
 
@@ -49,7 +49,7 @@ function Search() {
           className="input"
           type="text"
           value={item}
-         
+
           onChange={handleChange}
         />
         <button className="btn" type="submit">
@@ -60,7 +60,7 @@ function Search() {
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
-      <div className = "items">
+      <div className="items">
         {list.map((c, id) => (
           <Item
             key={id}

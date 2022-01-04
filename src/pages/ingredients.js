@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ingredients.css";
 import Item from "../components/Item.js";
-import Slideshow from "../components/Slideshow.js"; 
+import Slideshow from "../components/Slideshow.js";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -38,21 +38,21 @@ function Ingredients() {
   };
 
   const navigate = useNavigate();
-  
-  const handleRoute = () =>{ 
+
+  const handleRoute = () => {
     navigate("/main");
   }
 
   return (
     <div className="App">
-       <Slideshow/>
+      <Slideshow />
       <h1>Ingredients</h1>
       <form onSubmit={handleSubmit}>
         <input
           className="inputIngredients"
           type="text"
           value={item}
-         
+
           onChange={handleChange}
         />
         <button className="btnIngredients" type="submit">
