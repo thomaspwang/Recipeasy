@@ -6,8 +6,14 @@ const apiRouter = require("./routes/api");
 
 const app = express();
 
+const corsOptions = {
+    origin: '*',
+    credentials:true,
+    optionSuccessStatus:200
+}
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use('/api', apiRouter);
 
 const port = process.env.PORT ? process.env.PORT : 5000;
