@@ -10,7 +10,7 @@ const arr = () => {
   else return [];
 };
 
-function Search() {
+function Search() { 
   const [item, setItem] = useState("");
   const [list, setList] = useState(arr);
   const [error, setError] = useState("");
@@ -26,6 +26,8 @@ function Search() {
       setItem("");
       setError("");
     } else if (!item) setError("");
+    list.push(item);
+    console.log(list);
   };
 
   React.useEffect(() => {
@@ -41,6 +43,7 @@ function Search() {
   const handleRoute = () => {
     navigate("/main");
   }
+
 
   return (
     <div className="App">
