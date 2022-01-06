@@ -24,6 +24,21 @@ router.post("/register", (req, res) => {
     })
 })
 
+router.get("/login", (req, res) => {
+    User.findOne({ username: req.query.username }).then(user => {
+        // res.header("Access-Control-Allow-Origin", "true");
+        if (user) {
+            if (user.password === req.query.password) {
+                res.send("True")
+            } else {
+                console.log(req.query.password);
+                res.send("False")
+            }
+        } else {
+            res.send("False")
+        }
+    })
+})
 
 router.get("/user", (req, res) => {
     User.findOne({ username: req.query.username }).then(user => {
@@ -33,6 +48,8 @@ router.get("/user", (req, res) => {
         res.send(user);
     })
 })
+
+
 
 router.get('/ingredients', (req, res) => {
     const username = req.query.username;
