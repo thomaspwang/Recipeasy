@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 // import {ReactComponent as Logo} from '../assets/instagram.svg'
 import { useNavigate } from "react-router-dom";
 import './login.css';
+import axios from 'axios';
 
+const loginUrl = "http://localhost:4000/api/login?"
 
 function Login(props) {
   const username = useFormInput('');
@@ -20,7 +22,47 @@ function Login(props) {
   let history = useNavigate();
 
   const handleLogin = () => {
-    history('/main');
+
+    const endpoint = loginUrl + `username=${username.value}` + "&" + `password=${password.value}`;
+    console.log(endpoint);
+    
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Origin','http://localhost:5000');
+
+    fetch(endpoint, {
+        mode: 'cors',
+        method: 'GET',
+        headers: headers
+    })
+    .then(result => result.text())
+    .then(data => {
+      console.log(data);
+      if (data === "True") {
+        history('/main');
+      } else {
+        setError("Invalid password and/or username!");
+      }
+    })
+
+
+    // let config = {
+    //   headers: {
+    //     'Access-Control-Allow-Origin' : '*',
+    //     'Access-Control-Allow-Credentials' : 'true'
+    //   }
+    // }
+
+    // axios.get(endpoint, config).then(result => {
+    //   console.log(result);
+    //   if (result === "True") {
+    //     history('/main');
+    //   } else {
+    //     setError("Invalid password and/or username!");
+    //   }
+    // })
   }
 
   return (
