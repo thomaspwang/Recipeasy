@@ -36,6 +36,7 @@ function Login(props) {
       </div>
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
       <input className='btnLogin' type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+      <input className='btnLogin' type="button" value={loading ? 'Loading...' : 'Sign Up'} onClick={handleLogin} disabled={loading} /><br />
     </div>
   );
 }
