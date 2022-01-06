@@ -26,8 +26,7 @@ function Search() {
       setItem("");
       setError("");
     } else if (!item) setError("");
-    list.push(item);
-    console.log(list);
+
   };
 
   React.useEffect(() => {

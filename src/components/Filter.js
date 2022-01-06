@@ -3,14 +3,40 @@ import "./Filter.css";
 import { useState } from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Dropdown from 'react-bootstrap/Dropdown'
+import Select from 'react-select';
 
 function Filter() {
+  //const [diet, setDiet] = useState(arr);
+  //const [health, setHealth] = useState(arr);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+
+  const health = [
+    { value: 'Health1', label: 'Health1' },
+    { value: 'Health2', label: 'Health2' },
+    { value: 'Health3', label: 'Health3' },
+  ];
+
+  const diet = [
+    { value: 'Diet1', label: 'Diet1' },
+    { value: 'Diet2', label: 'Diet1' },
+    { value: 'Diet3', label: 'Diet3' },
+  ];
+
+  const time = [
+    { value: 'time1', label: 'time1' },
+    { value: 'time2', label: 'time2' },
+    { value: 'time3', label: 'time3' },
+  ];
+  const rating = [
+    { value: '5', label: '*****' },
+    { value: '4', label: '****' },
+    { value: '3', label: '***' },
+    { value: '2', label: '**' },
+    { value: '1', label: '*' },
+  ];
 
   return (
     <>
@@ -24,31 +50,31 @@ function Filter() {
         </Modal.Header>
         <Modal.Body>
           <>
-            {['Recipe Time', 'Diet', 'Rating', 'Health Issues'].map(
-              (variant) => (
-                <DropdownButton
-                  as={ButtonGroup}
-                  key={variant}
-                  id={`dropdown-variants-${variant}`}
-                  variant={variant.toLowerCase()}
-                  title={variant}
-                >
-                  <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                  <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                  <Dropdown.Item eventKey="3" active>
-                    Active Item
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                </DropdownButton>
-              ),
-            )}
+          <div className="App" >
+        <h3>Health</h3>
+        <Select
+        isMulti={true}
+          options={health}
+        />
+         <h3>Diet</h3>
+        <Select
+        isMulti={true}
+          options={diet}
+        />
+         <h3>Time</h3>
+        <Select
+        isMulti={true}
+          options={time}
+        />
+         <h3>Rating</h3>
+        <Select
+        isMulti={true}
+          options={rating}
+        />
+      </div>
           </>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button>
