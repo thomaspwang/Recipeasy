@@ -1,3 +1,5 @@
+/* delete file */
+
 import React, { useState } from "react";
 import "./ingredients.css";
 import Item from "../components/Item.js";
