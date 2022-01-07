@@ -5,23 +5,58 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Select from 'react-select';
 
+var healthS = [];
+var dietS = [];
+var ratingS = [];
+var timeS = [];
+
 function Filter() {
-  //const [diet, setDiet] = useState(arr);
-  //const [health, setHealth] = useState(arr);
+  const [healthList, setHealth] = useState([]);
+  const [dietList, setDiet] = useState([]);
+  const [timeList, setTime] = useState([]);
+  const [rateList, setRating] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  const [healthSelect, setHealth] = useState(" ");
-  var healthS = [];
+  //const [healthSelect, setHealth] = useState(" ");
+ 
 
-  const handleChange = (event) => {
+  const handleChangeH = (event) => {
     healthS = [];
     console.log(`Option selected:`, event);
     for (let i = 0; i < event.length; i++) {
       healthS.push(event[i].value);
     }
     console.log(healthS);
+    setHealth(healthS);
+  };
+
+  const handleChangeD = (event) => {
+    dietS = [];
+    console.log(`Option selected:`, event);
+    for (let i = 0; i < event.length; i++) {
+      dietS.push(event[i].value);
+    }
+    setDiet(dietS);
+  };
+
+  const handleChangeR = (event) => {
+    ratingS = [];
+    console.log(`Option selected:`, event);
+    for (let i = 0; i < event.length; i++) {
+      ratingS.push(event[i].value);
+    }
+    setRating(healthS);
+  };
+
+  const handleChangeT = (event) => {
+    timeS = [];
+    console.log(`Option selected:`, event);
+    for (let i = 0; i < event.length; i++) {
+      timeS.push(event[i].value);
+    }
+    setTime(healthS);
   };
 
 
@@ -67,7 +102,7 @@ function Filter() {
         <Select
         isMulti={true}
           options={health}
-          onChange={handleChange}
+          onChange={handleChangeH}
           // value={healthSelect}
           
         />
@@ -76,16 +111,19 @@ function Filter() {
 
         isMulti={true}
           options={diet}
+          onChange={handleChangeD}
         />
          <h3>Time</h3>
         <Select
         isMulti={true}
           options={time}
+          onChange={handleChangeT}
         />
          <h3>Rating</h3>
         <Select
         isMulti={true}
           options={rating}
+          onChange={handleChangeR}
         />
       </div>
           </>

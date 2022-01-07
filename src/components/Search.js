@@ -25,6 +25,7 @@ function Search() {
       setList([...list, newItem]);
       setItem("");
       setError("");
+      console.log(list);
     } else if (!item) setError("");
 
   };
