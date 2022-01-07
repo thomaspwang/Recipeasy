@@ -12,6 +12,18 @@ function Filter() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
+  const [healthSelect, setHealth] = useState(" ");
+  var healthS = [];
+
+  const handleChange = (event) => {
+    healthS = [];
+    console.log(`Option selected:`, event);
+    for (let i = 0; i < event.length; i++) {
+      healthS.push(event[i].value);
+    }
+    console.log(healthS);
+  };
+
 
   const health = [
     { value: 'Health1', label: 'Health1' },
@@ -37,7 +49,7 @@ function Filter() {
     { value: '2', label: '**' },
     { value: '1', label: '*' },
   ];
-
+  
   return (
     <>
       <div variant="primary" onClick={handleShow}>
@@ -55,9 +67,13 @@ function Filter() {
         <Select
         isMulti={true}
           options={health}
+          onChange={handleChange}
+          // value={healthSelect}
+          
         />
          <h3>Diet</h3>
         <Select
+
         isMulti={true}
           options={diet}
         />
