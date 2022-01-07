@@ -5,6 +5,10 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Select from 'react-select';
 
+import {currUserAtom} from "../atoms.js";
+import {useAtom} from 'jotai';
+
+
 var healthS = [];
 var dietS = [];
 var ratingS = [];
@@ -15,11 +19,46 @@ function Filter() {
   const [dietList, setDiet] = useState([]);
   const [timeList, setTime] = useState([]);
   const [rateList, setRating] = useState([]);
+  const [user] = useAtom(currUserAtom);
+
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
   //const [healthSelect, setHealth] = useState(" ");
+
+  const saveFilters = () => {
+
+    setShow(false);
+
+    fetch("http://localhost:5000/api/health-problems", {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      },
+      body: JSON.stringify({
+        "username" : user,
+        "health_problems" : healthList,
+      })
+    }).then(response => console.log(response.json()));
+
+    fetch("http://localhost:4000/api/dietary-restrictions", {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      },
+      body: JSON.stringify({
+        "username" : user,
+        "dietary_restrictions" : dietList,
+      })
+    }).then(response => console.log(response.json()));
+
+  }
  
 
   const handleChangeH = (event) => {
@@ -91,7 +130,7 @@ function Filter() {
         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Toicon-icon-lines-and-angles-filter.svg/1024px-Toicon-icon-lines-and-angles-filter.svg.png' className='button' />
       </div>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={saveFilters}>
         <Modal.Header closeButton>
           <Modal.Title>Filters</Modal.Title>
         </Modal.Header>
@@ -129,7 +168,7 @@ function Filter() {
           </>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={saveFilters}>
             Save Changes
           </Button>
         </Modal.Footer>

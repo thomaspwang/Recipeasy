@@ -45,20 +45,6 @@ function Search() {
 
   const handleFindRecipes = () => {
 
-    // const response = await fetch("http://localhost:4000/api/register", {
-    //   mode: 'cors',
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Origin' : 'http://localhost:5000'
-    //   },
-    //   body: JSON.stringify({ 
-    //     "username" : username.value,
-    //     "password" : password.value
-    //   })
-    // });
-
     fetch("http://localhost:4000/api/ingredients", {
       mode: 'cors',
       method: 'POST',
@@ -72,6 +58,8 @@ function Search() {
         "ingredients" : list,
       })
     })
+    .then(response => console.log(response.json()));
+
 
     navigate("/main");
   }
