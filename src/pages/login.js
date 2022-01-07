@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './login.css';
 import axios from 'axios';
+import {currUserAtom} from "../atoms.js";
+import {useAtom} from 'jotai';
 
 const loginUrl = "http://localhost:4000/api/login?"
 
@@ -11,6 +13,7 @@ function Login(props) {
   const password = useFormInput('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useAtom(currUserAtom);
 
   // const handleChange = (e) =>{
   //     const {name,value} = e.target
@@ -41,6 +44,7 @@ function Login(props) {
     .then(data => {
       console.log(data);
       if (data === "True") {
+        setUser(username.value);
         history('/main');
       } else {
         setError("Invalid password and/or username!");
@@ -65,6 +69,32 @@ function Login(props) {
     // })
   }
 
+  const handleSignUp = async () => {
+    const response = await fetch("http://localhost:4000/api/register", {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      },
+      body: JSON.stringify({ 
+        "username" : username.value,
+        "password" : password.value
+      })
+    });
+
+    if (response.status === 400) {
+      setError("Account already exists! Try logging in.");
+    } else {
+      setUser(username.value);
+      history('/main');
+    }
+
+    const responseJson = await response.json();
+    console.log(responseJson);
+  }
+
   return (
     <div className='div-login'>
       <h1>Welcome!</h1>
@@ -78,7 +108,7 @@ function Login(props) {
       </div>
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
       <input className='btnLogin' type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
-      <input className='btnLogin' type="button" value={loading ? 'Loading...' : 'Sign Up'} onClick={handleLogin} disabled={loading} /><br />
+      <input className='btnLogin' type="button" value={loading ? 'Loading...' : 'Sign Up'} onClick={handleSignUp} disabled={loading} /><br />
     </div>
   );
 }

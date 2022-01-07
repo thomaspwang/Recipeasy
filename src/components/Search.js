@@ -3,6 +3,8 @@ import "./Search.css";
 import Item from "./Item.js";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import {currUserAtom} from "../atoms.js";
+import {useAtom} from 'jotai';
 
 const arr = () => {
   let data = localStorage.getItem("data");
@@ -14,6 +16,7 @@ function Search() {
   const [item, setItem] = useState("");
   const [list, setList] = useState(arr);
   const [error, setError] = useState("");
+  const [user] = useAtom(currUserAtom);
 
   const handleSubmit = (e) => {
     const newItem = {
@@ -39,7 +42,36 @@ function Search() {
 
   const navigate = useNavigate();
 
-  const handleRoute = () => {
+  const handleFindRecipes = () => {
+
+    // const response = await fetch("http://localhost:4000/api/register", {
+    //   mode: 'cors',
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Origin' : 'http://localhost:5000'
+    //   },
+    //   body: JSON.stringify({ 
+    //     "username" : username.value,
+    //     "password" : password.value
+    //   })
+    // });
+
+    fetch("http://localhost:4000/api/ingredients", {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      },
+      body: JSON.stringify({
+        "username" : user,
+        "ingredients" : list,
+      })
+    })
+
     navigate("/main");
   }
 
@@ -57,7 +89,7 @@ function Search() {
         <button className="btn" type="submit">
           Add
         </button>
-        <button className="btn" onClick={handleRoute}>
+        <button className="btn" onClick={handleFindRecipes}>
           Find Recipes
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
