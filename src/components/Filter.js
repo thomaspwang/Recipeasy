@@ -30,7 +30,7 @@ function Filter() {
 
     setShow(false);
 
-    fetch("http://localhost:5000/api/health-problems", {
+    fetch("http://localhost:4000/api/health-problems", {
       mode: 'cors',
       method: 'POST',
       headers: {
