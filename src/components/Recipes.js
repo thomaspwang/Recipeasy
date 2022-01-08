@@ -9,7 +9,7 @@ const linkStyle = {
 
 };
 
-const Recipes = () => {
+const Recipes = ({data}) => {
 
   const [saved, setSaved] = useState(false)
 
@@ -24,7 +24,7 @@ const Recipes = () => {
       <Card.Body>
         <Card.Title>
           <Link to="/recipe" style={linkStyle}>
-            Name
+            {data['title']}
           </Link>
           <div className="saveRecipe" style={{ float: 'right' }}>
             {saved ? (

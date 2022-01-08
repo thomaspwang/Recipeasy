@@ -6,17 +6,23 @@ import { v4 as uuidv4 } from "uuid";
 import {currUserAtom} from "../atoms.js";
 import {useAtom} from 'jotai';
 
+
 const arr = () => {
   let data = localStorage.getItem("data");
   if (data) return JSON.parse(localStorage.getItem("data"));
   else return [];
 };
 
+var recipes= [];
+
+
 function Search() { 
   const [item, setItem] = useState("");
   const [list, setList] = useState(arr);
   const [error, setError] = useState("");
   const [user] = useAtom(currUserAtom);
+  const [recipesData, setRecipeList] = useState(arr);
+  
 
   const recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?';
 
@@ -84,11 +90,13 @@ function Search() {
     console.log(data);
 
     var recipeList = data['results'];
+    setRecipeList(recipeList);
     console.log(recipeList);
 
     navigate("/main");
   }
 
+  recipes = recipesData;
 
   return (
     <div className="App">
@@ -123,5 +131,5 @@ function Search() {
     </div>
   );
 }
-
+export {recipes};
 export default Search;
