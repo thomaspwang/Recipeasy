@@ -2,7 +2,14 @@ import React from "react";
 import { Nav, NavLink, NavMenu }
   from "./NavbarElements";
 
+
+import {currUserAtom} from "../../atoms.js";
+import {useAtom} from 'jotai';
+
 const Navbar = () => {
+
+  const [user] = useAtom(currUserAtom);
+
   return (
     <>
       <Nav>
@@ -20,7 +27,7 @@ const Navbar = () => {
             Login/Sign up
           </NavLink>
         </NavMenu>
-        <div style={{ float: "right", paddingTop: "10px" }}>Hello [User] !</div>
+        <div style={{ float: "right", paddingTop: "10px" }}>Hello {user}!</div>
       </Nav>
     </>
   );

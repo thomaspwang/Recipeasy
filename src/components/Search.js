@@ -18,6 +18,8 @@ function Search() {
   const [error, setError] = useState("");
   const [user] = useAtom(currUserAtom);
 
+  const recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?';
+
   const handleSubmit = (e) => {
     const newItem = {
       id: uuidv4(),
@@ -43,7 +45,7 @@ function Search() {
 
   const navigate = useNavigate();
 
-  const handleFindRecipes = () => {
+  const handleFindRecipes = async () => {
 
     fetch("http://localhost:4000/api/ingredients", {
       mode: 'cors',
@@ -60,6 +62,29 @@ function Search() {
     })
     .then(response => console.log(response.json()));
 
+    let ingredients = list.map(x => x['item']).toString();
+    console.log(ingredients);
+
+    let searchUrl = recipeUrl + new URLSearchParams({
+      limitLicense: 'false',
+      includeIngredients: ingredients,
+    })
+
+    const response = await fetch(searchUrl, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+        'x-rapidapi-key': '86d4a1f2eemsh7a4556407c59a5ap1334dajsn28d840fe7925',
+      }
+    })
+    
+
+    var data = await response.json();
+    console.log(data);
+
+    var recipeList = data['results'];
+    console.log(recipeList);
 
     navigate("/main");
   }
