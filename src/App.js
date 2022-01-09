@@ -9,13 +9,14 @@ import Saved from './pages/saved.js';
 import Main from './pages/main.js';
 import Ingredients from './pages/ingredients.js';
 import Recipe from './pages/recipe.js';
+import {data} from './components/Recipes.js';
 
 function App() {
     return (
         <Router>
             <Navbar />
             <Routes>
-
+                
                 <Route exact path='/' exact element={<Home />} />
                 <Route path='/ingredients' element={<Ingredients />} />
                 <Route path='/login' element={<Login />} />

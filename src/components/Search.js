@@ -74,6 +74,9 @@ function Search() {
     let searchUrl = recipeUrl + new URLSearchParams({
       limitLicense: 'false',
       includeIngredients: ingredients,
+      number: '100',
+      addRecipeInformation: 'true',
+      fillIngredients: 'true'
     })
 
     const response = await fetch(searchUrl, {
@@ -92,11 +95,11 @@ function Search() {
     var recipeList = data['results'];
     setRecipeList(recipeList);
     console.log(recipeList);
-
     navigate("/main");
+
   }
 
-  recipes = recipesData;
+  eval("recipes = recipesData");
 
   return (
     <div className="App">

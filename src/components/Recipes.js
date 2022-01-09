@@ -9,7 +9,11 @@ const linkStyle = {
 
 };
 
+var name= '';
+
+
 const Recipes = ({data}) => {
+  name =  data['title'];
 
   const [saved, setSaved] = useState(false)
 
@@ -20,11 +24,11 @@ const Recipes = ({data}) => {
   //pull from api?
   return (
     <Card style={{ width: '15.5rem' }}>
-      <Link to="/recipe" style={linkStyle}><Card.Img variant="top" src="https://source.unsplash.com/user/erondu/600x400" /></Link>
+      <Link to="/recipe" style={linkStyle}><Card.Img variant="top" src={data['image']} /></Link>
       <Card.Body>
         <Card.Title>
           <Link to="/recipe" style={linkStyle}>
-            {data['title']}
+           {name}
           </Link>
           <div className="saveRecipe" style={{ float: 'right' }}>
             {saved ? (
@@ -51,7 +55,7 @@ const Recipes = ({data}) => {
 
         </Card.Title>
         <Link to="/recipe" style={linkStyle}><Card.Text>
-          Some Custom text one can write here
+         
         </Card.Text></Link>
       </Card.Body>
     </Card>
