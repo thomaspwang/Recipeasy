@@ -9,6 +9,23 @@ import {useAtom} from 'jotai';
 const Navbar = () => {
 
   const [user] = useAtom(currUserAtom);
+  if (user == '') {
+    return (
+      <>
+        <Nav>
+          <NavMenu>
+            <NavLink to="/" activeStyle>
+              Home
+            </NavLink>
+            <NavLink to="/login" activeStyle>
+              Login/Sign up
+            </NavLink>
+          </NavMenu>
+          <div style={{ float: "right", paddingTop: "10px" }}>Hello {user}!</div>
+        </Nav>
+      </>
+    );
+  } else {
 
   return (
     <>
@@ -23,14 +40,12 @@ const Navbar = () => {
           <NavLink to="/saved" activeStyle>
             Saved
           </NavLink>
-          <NavLink to="/login" activeStyle>
-            Login/Sign up
-          </NavLink>
         </NavMenu>
         <div style={{ float: "right", paddingTop: "10px" }}>Hello {user}!</div>
       </Nav>
     </>
   );
+  }
 };
 
 export default Navbar;
