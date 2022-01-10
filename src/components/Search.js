@@ -3,7 +3,7 @@ import "./Search.css";
 import Item from "./Item.js";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import {currUserAtom} from "../atoms.js";
+import {currUserAtom, recipesAtom} from "../atoms.js";
 import {useAtom} from 'jotai';
 
 
@@ -13,15 +13,12 @@ const arr = () => {
   else return [];
 };
 
-var recipes= [];
-
-
 function Search() { 
   const [item, setItem] = useState("");
   const [list, setList] = useState(arr);
   const [error, setError] = useState("");
   const [user] = useAtom(currUserAtom);
-  const [recipesData, setRecipeList] = useState(arr);
+  const [recipes, setRecipes] = useAtom(recipesAtom);
   
 
   const recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?';
@@ -71,6 +68,10 @@ function Search() {
     let ingredients = list.map(x => x['item']).toString();
     console.log(ingredients);
 
+    // Call route to database to get their health/diet information
+    // Loop through each one, and then corss reference some data table for parameters
+    
+
     let searchUrl = recipeUrl + new URLSearchParams({
       limitLicense: 'false',
       includeIngredients: ingredients,
@@ -92,14 +93,12 @@ function Search() {
     var data = await response.json();
     console.log(data);
 
-    var recipeList = data['results'];
-    setRecipeList(recipeList);
-    console.log(recipeList);
+    setRecipes(data['results']);
+    console.log(recipes);
     navigate("/main");
-
   }
 
-  eval("recipes = recipesData");
+  // eval("recipes = recipesData");
 
   return (
     <div className="App">
@@ -134,5 +133,5 @@ function Search() {
     </div>
   );
 }
-export {recipes};
+
 export default Search;
