@@ -7,6 +7,7 @@ import Select from 'react-select';
 
 import {currUserAtom} from "../atoms.js";
 import {useAtom} from 'jotai';
+export {dietS};
 
 
 var healthS = [];
@@ -100,17 +101,38 @@ function Filter() {
 
 
   const health = [
-    { value: 'Health1', label: 'Health1' },
-    { value: 'Health2', label: 'Health2' },
-    { value: 'Health3', label: 'Health3' },
+    { value: 'Health1', label: 'Hypertension (High Blood Pressure)' },
+    { value: 'Health2', label: 'High Cholesterol' },
+    { value: 'Health3', label: 'Diabetes' },
   ];
+
+  //measurments per day
+  //Hypertension(High Blood Pressure): low sodium(max 1500milligrams),
+  //                                   high fiber (min 30g)
+  //                                   watch calories(max 2000)
+  //                                    avoid alchohol
+  //High Cholesterol: low fat(max 56-78 grams)
+  //                   low saturated fat (max 13 grams)
+  //                  low cholesteral (max 200mg)
+  //                  low sodium(2300 milligrams max)
+  //                  limit alchohl
+  //diabetes: low carbs (max 270 grams)
+  //           sugar(max36 grams)
+  //           low cholesterol(max 200miligrams)
+  //           sat fats(max 15 grams)
+  //          
 
   const diet = [
-    { value: 'Diet1', label: 'Diet1' },
-    { value: 'Diet2', label: 'Diet1' },
-    { value: 'Diet3', label: 'Diet3' },
-  ];
+    { value: 'pescetarian', label: 'Pescetarian' },
+    { value: 'vegetarian', label: 'Vegetarian' },
+    { value: 'paleo', label: 'Paleo' },
+    { value: 'vegan', label: 'Vegan' },
+    { value: 'lacto vegetarian', label: 'Lacto-Vegetarian' },
+    { value: 'ovo vegetarian', label: 'Ovo-Vegetarian' },
+    { value: 'primal', label: 'Primal' },
+    ];
 
+    //do cuisine and type of meal(dinner, etc ) instead?
   const time = [
     { value: 'time1', label: 'time1' },
     { value: 'time2', label: 'time2' },
