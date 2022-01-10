@@ -2,9 +2,15 @@ import React from "react";
 import "./main.css";
 import Sidebar from "../components/Sidebar.js";
 import Recipes from "../components/Recipes.js";
-import {recipes} from "../components/Search.js";
+
+import {recipesAtom} from "../atoms.js";
+import {useAtom} from 'jotai';
+
 
 const Main = () => {
+
+  const [recipes] = useAtom(recipesAtom);
+
   return (
     <div>
 
