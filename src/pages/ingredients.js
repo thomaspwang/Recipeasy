@@ -1,4 +1,4 @@
-/* delete file */
+
 
 import React, { useState } from "react";
 import "./ingredients.css";
