@@ -45,7 +45,7 @@ function Login(props) {
       console.log(data);
       if (data === "True") {
         setUser(username.value);
-        history('/main');
+        history('/');
       } else {
         setError("Invalid password and/or username!");
       }
