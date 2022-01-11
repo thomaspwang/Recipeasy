@@ -22,11 +22,12 @@
     color: black;
     margin: .5rem ;
   }
-  .btn:hover {
+  /* .btn:hover {
     filter: brightness(110%);
     border: none;
     outline: 0;
-  }
+    color: rgb(108, 134, 122);
+  } */
   .items {
     display: flex;
     flex-direction: column;

@@ -12,14 +12,12 @@ export {dietS};
 
 var healthS = [];
 var dietS = [];
-var ratingS = [];
-var timeS = [];
+var allergiesS = [];
 
 function Filter() {
   const [healthList, setHealth] = useState([]);
   const [dietList, setDiet] = useState([]);
-  const [timeList, setTime] = useState([]);
-  const [rateList, setRating] = useState([]);
+  const [allergiesList, setAllergies] = useState([]);
   const [user] = useAtom(currUserAtom);
 
   const [show, setShow] = useState(false);
@@ -59,6 +57,20 @@ function Filter() {
       })
     }).then(response => console.log(response.json()));
 
+    fetch("http://localhost:4000/api/allergies", {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      },
+      body: JSON.stringify({
+        "username" : user,
+        "allergies" : allergiesList,
+      })
+    }).then(response => console.log(response.json()));
+
   }
  
 
@@ -81,46 +93,59 @@ function Filter() {
     setDiet(dietS);
   };
 
-  const handleChangeR = (event) => {
-    ratingS = [];
+  const handleChangeA = (event) => {
+    allergiesS = [];
     console.log(`Option selected:`, event);
     for (let i = 0; i < event.length; i++) {
-      ratingS.push(event[i].value);
+      allergiesS.push(event[i].value);
     }
-    setRating(healthS);
+    setAllergies(allergiesS);
   };
 
-  const handleChangeT = (event) => {
-    timeS = [];
-    console.log(`Option selected:`, event);
-    for (let i = 0; i < event.length; i++) {
-      timeS.push(event[i].value);
-    }
-    setTime(healthS);
-  };
+const hypertension = {
+  maxSodium: '375',
+  minFiber: '10',
+  maxCalories:'500', 
+  maxAlcohol: '0',
+}
+const cholesterol = {
+  maxSodium: '375',
+  maxFat: '19',
+  maxSaturatedFat: '3',
+  maxCalories:'500', 
+  maxAlcohol: '0',
+  maxCholesterol:'50',
+}
+const diabetes = {
+  maxSugar: '9',
+  maxSaturatedFat: '3',
+  maxCholesterol:'50',
+}
+
+const obesity = {
+  maxSugar: '9',
+  maxSaturatedFat: '3',
+  minFiber: '10',
+  maxAlcohol: '0',
+}
+  const flu ={
+    minVitaminC:'5',
+  }
+
+  const depression = {
+    minVitaminC:'5',
+    minFiber: '10',
+  }
 
 
   const health = [
-    { value: 'Health1', label: 'Hypertension (High Blood Pressure)' },
-    { value: 'Health2', label: 'High Cholesterol' },
-    { value: 'Health3', label: 'Diabetes' },
+    { value: hypertension, label: 'Hypertension' },
+    { value: cholesterol, label: 'High Cholesterol' },
+    { value: diabetes, label: 'Diabetes' },
+    { value: obesity, label: 'Obesity' },
+    { value: flu, label: 'Flu' },
+    { value: depression, label: 'Depression' },
   ];
-
-  //measurments per day
-  //Hypertension(High Blood Pressure): low sodium(max 1500milligrams),
-  //                                   high fiber (min 30g)
-  //                                   watch calories(max 2000)
-  //                                    avoid alchohol
-  //High Cholesterol: low fat(max 56-78 grams)
-  //                   low saturated fat (max 13 grams)
-  //                  low cholesteral (max 200mg)
-  //                  low sodium(2300 milligrams max)
-  //                  limit alchohl
-  //diabetes: low carbs (max 270 grams)
-  //           sugar(max36 grams)
-  //           low cholesterol(max 200miligrams)
-  //           sat fats(max 15 grams)
-  //          
 
   const diet = [
     { value: 'pescetarian', label: 'Pescetarian' },
@@ -132,18 +157,23 @@ function Filter() {
     { value: 'primal', label: 'Primal' },
     ];
 
-    //do cuisine and type of meal(dinner, etc ) instead?
-  const time = [
-    { value: 'time1', label: 'time1' },
-    { value: 'time2', label: 'time2' },
-    { value: 'time3', label: 'time3' },
-  ];
-  const rating = [
-    { value: '5', label: '*****' },
-    { value: '4', label: '****' },
-    { value: '3', label: '***' },
-    { value: '2', label: '**' },
-    { value: '1', label: '*' },
+  
+  const allergies = [
+    { value: 'peanut', label: 'Peanuts' },
+    { value: 'shellfish', label: 'Shellfish' },
+    { value: 'egg', label: 'Eggs' },
+    { value: 'soy', label: 'Soy' },
+    { value: 'tree nut', label: 'Tree Nuts' },
+    { value: 'wheat', label: 'Wheat' },
+    { value: 'dairy', label: 'Dairy' },
+    { value: 'gluten', label: 'Gluten' },
+    { value: 'sesame', label: 'Sesame' },
+    { value: 'seafood', label: 'Seafood' },
+    { value: 'sulfite', label: 'Sulfite' },
+
+
+
+
   ];
   
   return (
@@ -174,17 +204,11 @@ function Filter() {
           options={diet}
           onChange={handleChangeD}
         />
-         <h3>Time</h3>
+         <h3>Allergies</h3>
         <Select
         isMulti={true}
-          options={time}
-          onChange={handleChangeT}
-        />
-         <h3>Rating</h3>
-        <Select
-        isMulti={true}
-          options={rating}
-          onChange={handleChangeR}
+          options={allergies}
+          onChange={handleChangeA}
         />
       </div>
           </>

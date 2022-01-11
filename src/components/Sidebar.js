@@ -47,7 +47,7 @@ const Sidebar = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem onClick= {menuIconClick} icon={<FiLogOut />}>Logout</MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

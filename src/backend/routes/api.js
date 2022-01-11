@@ -14,6 +14,7 @@ router.post("/register", (req, res) => {
                 ingredients: [],
                 dietary_restrictions: [],
                 health_problems: [],
+                allergies:[],
                 saved_recipes: [],
             });
 

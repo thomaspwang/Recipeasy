@@ -6,15 +6,23 @@ import "./Slideshow.css";
 const slideImages = [
   {
     url: "https://www.daimanuel.com/wp-content/uploads/2019/01/dark-green-vegetables.jpg",
-    caption: 'PLEXIPIE'
+    caption: 'RECIPEASY'
   },
   {
-    url: 'https://www.daimanuel.com/wp-content/uploads/2019/01/dark-green-vegetables.jpg',
-    caption: 'PLEXIPIE'
+    url: 'https://vitalitynow.org/uploads/428.jpeg',
+    caption: 'RECIPEASY'
   },
   {
-    url: 'https://www.daimanuel.com/wp-content/uploads/2019/01/dark-green-vegetables.jpg',
-    caption: 'PLEXIPIE'
+    url: 'https://vitalitynow.org/uploads/181.jpeg',
+    caption: 'RECIPEASY'
+  },
+  {
+    url: 'https://img2.healthdigest.com/img/gallery/unhealthy-food-you-should-always-avoid-at-mexican-restaurants/l-intro-1608567609.jpg',
+    caption: 'RECIPEASY'
+  },
+  {
+    url: 'https://www.all4women.co.za/wp-content/uploads/2020/12/24/89491121_m.jpg',
+    caption: 'RECIPEASY'
   },
 ];
 
