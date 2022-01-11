@@ -101,16 +101,28 @@ function Filter() {
 
 
   const health = [
-    { value: 'Health1', label: 'Hypertension (High Blood Pressure)',  maxSodium: '1000', minFiber: '30', maxCalories: '2000' },
+    { value: 'Health1', label: 'Hypertension' },
     { value: 'Health2', label: 'High Cholesterol' },
     { value: 'Health3', label: 'Diabetes' },
-    { value: 'Health4', label: 'High Blood Pressure' },
-    { value: 'Health5', label: 'Sleep Apnea' },
-    { value: 'Health6', label: 'Obesity' },
-    { value: 'Health7', label: 'Flu' },
-    { value: 'Health8', label: 'Depression' },
+    { value: 'Health4', label: 'Sleep Apnea' },
+    { value: 'Health5', label: 'Obesity' },
+    { value: 'Health6', label: 'Flu' },
+    { value: 'Health7', label: 'Depression' },
   ];
+//   var nutritionalParameters = {
+//     'Hypertension': "maxSodium: '1000', minFiber: '30', maxCalories: '2000'"
+//     'High Cholesterol': "maxSaturatedFat: '50', maxCholesterol: '1000',"
+//   }
 
+//    var Health1 = {
+//       method: 'GET',
+//       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex',
+//       params: {
+//         maxSodium: '1000',
+//         minFiber: '30', 
+//         maxCalories: '2000'
+//       }
+//     }
   //measurments per day
   //Hypertension(High Blood Pressure): low sodium(max 1500milligrams),
   //                                   high fiber (min 30g)
