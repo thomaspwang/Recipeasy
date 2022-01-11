@@ -41,7 +41,7 @@ const Navbar = () => {
             Saved
           </NavLink>
         </NavMenu>
-        <div style={{ float: "right", paddingTop: "10px" }}>Hello {user}!</div>
+        <div style={{ float: "right", paddingTop: "10px" }}>Hello {user}</div>
       </Nav>
     </>
   );

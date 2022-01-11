@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {useAtom} from 'jotai';
-import {dataAtom} from "../atoms.js";
+import {dataAtom, currUserAtom} from "../atoms.js";
 
 
 const linkStyle = {
@@ -23,10 +23,50 @@ const Recipes = ({data}) => {
 
   const [saved, setSaved] = useState(false);
   const [recipe, setRecipe] = useAtom(dataAtom);
+  const [user, setUser] = useAtom(currUserAtom);
 
-  const saveIconClick = () => {
+  const saveRecipe = () => {
     //condition checking to change state from true to false and vice versa
     saved ? setSaved(false) : setSaved(true);
+
+    const endpoint = 'http://localhost:4000/api/recipes?' + `username=${user}`;
+    console.log(endpoint);
+
+    fetch(endpoint, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(result => result.json())
+    .then(savedRecipes => {
+      console.log(savedRecipes);
+
+      savedRecipes = savedRecipes.filter(x => {return x !== data['id']});
+
+      savedRecipes.push(data['id']);
+
+      return savedRecipes;
+    })
+    .then(newRecipes => {
+      console.log(newRecipes);
+      fetch("http://localhost:4000/api/recipes", {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Origin' : 'http://localhost:5000'
+        },
+        body: JSON.stringify({
+          "username" : user,
+          "recipes" : newRecipes
+        })
+      }).then(response => console.log(response.json()));
+    })
   };
 
   const onLinkClick = () => {
@@ -45,7 +85,7 @@ const Recipes = ({data}) => {
             {saved ? (
               <img
                 style={{ cursor: "pointer" }}
-                onClick={saveIconClick}
+                onClick={saveRecipe}
                 src="http://cdn.onlinewebfonts.com/svg/img_107813.png"
                 width="15"
                 height="15"
@@ -54,7 +94,7 @@ const Recipes = ({data}) => {
             ) : (
               <img
                 style={{ cursor: "pointer" }}
-                onClick={saveIconClick}
+                onClick={saveRecipe}
                 src="https://cdn.onlinewebfonts.com/svg/img_330749.png"
                 width="15"
                 height="15"
