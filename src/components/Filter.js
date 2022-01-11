@@ -101,9 +101,14 @@ function Filter() {
 
 
   const health = [
-    { value: 'Health1', label: 'Hypertension (High Blood Pressure)' },
+    { value: 'Health1', label: 'Hypertension (High Blood Pressure)',  maxSodium: '1000', minFiber: '30', maxCalories: '2000' },
     { value: 'Health2', label: 'High Cholesterol' },
     { value: 'Health3', label: 'Diabetes' },
+    { value: 'Health4', label: 'High Blood Pressure' },
+    { value: 'Health5', label: 'Sleep Apnea' },
+    { value: 'Health6', label: 'Obesity' },
+    { value: 'Health7', label: 'Flu' },
+    { value: 'Health8', label: 'Depression' },
   ];
 
   //measurments per day
@@ -120,7 +125,27 @@ function Filter() {
   //           sugar(max36 grams)
   //           low cholesterol(max 200miligrams)
   //           sat fats(max 15 grams)
-  //          
+  //high blood pressure: 
+  //          omega 3 fatty acids (min 100mg) 
+  //          citrus fruits as an ingredient
+  //          low sodium(2300 milligrams max)
+  //           0.6-gram potassium
+  //Sleep Apnea
+  //  melatonin (min 5 mg) 
+  //  omega 3 fatty acids (min 100mg)
+  //  tryptophan (min 8g)      
+  //Obesity
+  //  sugar(max36 grams)
+  //  whole grains ingredients
+  //  high fiber (min 30g)
+  //  protein (20g)
+  //  limit alchohl
+  //Flu
+  //  vitamin c (20g) 
+  //Depression
+  //  vitamin c (20g) 
+  //  protein (20g)
+  //  high fiber (min 30g)
 
   const diet = [
     { value: 'pescetarian', label: 'Pescetarian' },
