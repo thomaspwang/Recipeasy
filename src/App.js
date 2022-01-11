@@ -9,14 +9,14 @@ import Saved from './pages/saved.js';
 import Main from './pages/main.js';
 import Ingredients from './pages/ingredients.js';
 import Recipe from './pages/recipe.js';
-import {data} from './components/Recipes.js';
 import {useAtom} from 'jotai';
-import {currUserAtom} from "./atoms.js";
+import {currUserAtom, dataAtom} from "./atoms.js";
 
 function App() {
     
     const [user] = useAtom(currUserAtom);
-    
+    //const [data] = useAtom(dataAtom);
+
     if (user == '') {
         return (
             <Router>

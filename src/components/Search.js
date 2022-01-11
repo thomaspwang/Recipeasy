@@ -77,7 +77,8 @@ function Search() {
       includeIngredients: ingredients,
       number: '100',
       addRecipeInformation: 'true',
-      fillIngredients: 'true'
+      fillIngredients: 'true',
+      instructionsRequired: 'true',
     })
 
     const response = await fetch(searchUrl, {

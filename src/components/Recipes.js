@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {useAtom} from 'jotai';
+import {dataAtom} from "../atoms.js";
+
 
 const linkStyle = {
   textDecoration: "none",
@@ -10,24 +13,32 @@ const linkStyle = {
 };
 
 var name= '';
+var id = '';
 
 
 const Recipes = ({data}) => {
   name =  data['title'];
+  id = data['id'];
+  var url = "/recipe" ///+ id;
 
-  const [saved, setSaved] = useState(false)
+  const [saved, setSaved] = useState(false);
+  const [recipe, setRecipe] = useAtom(dataAtom);
 
   const saveIconClick = () => {
     //condition checking to change state from true to false and vice versa
     saved ? setSaved(false) : setSaved(true);
   };
+
+  const onLinkClick = () => {
+    setRecipe(data);
+  }
   //pull from api?
   return (
     <Card style={{ width: '15.5rem' }}>
-      <Link to="/recipe" style={linkStyle}><Card.Img variant="top" src={data['image']} /></Link>
+      <Link to={url} onClick={onLinkClick} style={linkStyle}><Card.Img variant="top" src={data['image']} /></Link>
       <Card.Body>
         <Card.Title>
-          <Link to="/recipe" style={linkStyle}>
+          <Link to={url} onClick={onLinkClick} style={linkStyle}>
            {name}
           </Link>
           <div className="saveRecipe" style={{ float: 'right' }}>
@@ -54,7 +65,7 @@ const Recipes = ({data}) => {
 
 
         </Card.Title>
-        <Link to="/recipe" style={linkStyle}><Card.Text>
+        <Link to={url} style={linkStyle}><Card.Text>
          
         </Card.Text></Link>
       </Card.Body>
