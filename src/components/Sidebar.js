@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Search from "./Search.js";
 import Filter from "../components/Filter.js";
+import {currUserAtom} from "../atoms.js";
+import {useAtom} from 'jotai';
+import { useNavigate } from "react-router-dom";
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -20,14 +23,20 @@ import "./Sidebar.css";
 
 
 const Sidebar = () => {
+  const [user, setUser] = useAtom(currUserAtom);
+
+  let history = useNavigate();
 
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(false)
 
   //create a custom function that will change menucollapse state from false to true and true to false
-  const menuIconClick = () => {
+  const logOut = () => {
     //condition checking to change state from true to false and vice versa
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+
+    setUser('');
+    history('/');
   };
 
   return (
@@ -47,7 +56,7 @@ const Sidebar = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem onClick= {menuIconClick} icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem onClick= {logOut} icon={<FiLogOut />}>Logout</MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>
