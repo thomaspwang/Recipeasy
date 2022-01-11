@@ -58,7 +58,7 @@ router.get('/ingredients', (req, res) => {
             return res.status(400).json({ username: "User not found " });
         }
         const ingredients = user.ingredients;
-        res.send({ "ingredients": ingredients });
+        res.send(ingredients);
 
     })
 });
@@ -72,7 +72,7 @@ router.get('/dietary-restrictions', (req, res) => {
         }
 
         const dietary_res = user.dietary_restrictions;
-        res.status(201).send({ "Dietary Restrictions": dietary_res });
+        res.status(201).send(dietary_res);
     })
 });
 
@@ -84,7 +84,7 @@ router.get('/health-problems', (req, res) => {
             return res.status(400).json({ message: "User not found " });
         }
         const health_problems = user.health_problems
-        res.status(201).send({ "Dietary Restrictions": health_problems });
+        res.status(201).send(health_problems);
     })
 });
 
@@ -95,7 +95,18 @@ router.get('/allergies', (req, res) => {
             return res.status(400).json({ message: "User not found " });
         }
         const allergies = user.allergies
-        res.status(201).send({ "Dietary Restrictions": allergies });
+        res.status(201).send(allergies);
+    })
+});
+
+router.get('/recipes', (req, res) => {
+    var username = req.query.username;
+    User.findOne({ username: username }).then(user => {
+        if (!user) {
+            return res.status(400).json({ message: "User not found " });
+        }
+        const recipes = user.saved_recipes
+        res.status(201).send(recipes);
     })
 });
 
@@ -155,5 +166,20 @@ router.post('/allergies', (req, res) => {
             .catch(err => console.log(err));
     })
 });
+
+router.post('/recipes', (req, res) => {
+    var username = req.body.username;
+    var recipes = req.body.recipes;
+    User.findOne({ username: username }).then(user => {
+        if (!user) {
+            return res.status(400).json({ message: "User not found " });
+        }
+        user.saved_recipes = recipes;
+        user.save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
+    })
+});
+
 
 module.exports = router;
