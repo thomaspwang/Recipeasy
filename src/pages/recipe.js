@@ -2,7 +2,9 @@ import React from "react";
 import './recipe.css';
 import {useAtom} from 'jotai';
 import {dataAtom} from "../atoms.js";
-import Summary from "./summary.js"
+//import Summary from "./summary.js"
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 
 const Recipe = () => {
   const [recipe] = useAtom(dataAtom);
@@ -32,7 +34,7 @@ const Recipe = () => {
       <img src={recipe['image']} alt="Recipe Name" />
         <h3>Estimated Time: {recipe['readyInMinutes']} Minutes</h3>
       </div>
-      <Summary/>
+      {ReactHtmlParser(recipe['summary'])}
       <p>
        <div><button className="buttonLink" onClick={btnClick}>I want to cook this!</button></div>
       
