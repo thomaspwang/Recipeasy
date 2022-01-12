@@ -9,35 +9,73 @@ const Saved = () => {
 
   const endpoint = 'http://localhost:4000/api/recipes?' + `username=${user}`;
 
-  const savedRecipes = fetch(endpoint, {
-    mode: 'cors',
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Origin' : 'http://localhost:5000'
-    }
-  }).then(result => result.json());
+  const findRecipes = async () => {
+    const recipeResults = await fetch(endpoint, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(result => result.json())
+    .then(data => {
+      console.log(data);
+      return data.toString();
+    })
+    .then(savedRecipes => {
+      console.log(savedRecipes);
+      let recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk?';
+      let url =  recipeUrl + new URLSearchParams({
+        ids:savedRecipes
+      });
+      return decodeURIComponent(url);
+    })
+    .then(searchUrl => {
+      console.log(searchUrl);
+      return fetch(searchUrl, {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+          'x-rapidapi-key': '86d4a1f2eemsh7a4556407c59a5ap1334dajsn28d840fe7925',
+        }
+      }).then(response => response.json());
+    });
 
-  console.log(savedRecipes);
+    console.log(recipeResults);
+    return recipeResults;
+  }
 
-  const recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk?'
+  let recipes = findRecipes();
 
-  let saved  = savedRecipes.toString();
-  console.log(saved);
 
-  let searchUrl = recipeUrl + new URLSearchParams({
-    ids:saved
-  })
+  
 
-  const response = fetch(searchUrl, {
-    mode: 'cors',
-    method: 'GET',
-    headers: {
-      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-      'x-rapidapi-key': '86d4a1f2eemsh7a4556407c59a5ap1334dajsn28d840fe7925',
-    }
-  }).then(response => console.log(response.json()))
+  // console.log(savedRecipes);
+
+  // const recipeUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/informationBulk?'
+
+  // let saved  = savedRecipes.toString();
+  // console.log(saved);
+
+  // let searchUrl = recipeUrl + new URLSearchParams({
+  //   ids:savedRecipes
+  // })
+
+  // console.log(searchUrl);
+
+  // fetch(searchUrl, {
+  //   mode: 'cors',
+  //   method: 'GET',
+  //   headers: {
+  //     'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+  //     'x-rapidapi-key': '86d4a1f2eemsh7a4556407c59a5ap1334dajsn28d840fe7925',
+  //   }
+  // })
+  // .then(response => response.text())
+  // .then(data => console.log(data));
 
   
   return (
