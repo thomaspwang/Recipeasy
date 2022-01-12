@@ -26,17 +26,19 @@ const Recipe = () => {
   }
 
   return (
-    <div>
+    <div className='all'>
+    <div className='fullPage'>
       <h1>
       {recipe["title"]}
       </h1>
       <div>
       <img src={recipe['image']} alt="Recipe Name" />
-        <h3>Estimated Time: {recipe['readyInMinutes']} Minutes</h3>
+        <h5><b>Estimated Time:</b> {recipe['readyInMinutes']} minutes</h5>
       </div>
-      {ReactHtmlParser(recipe['summary'])}
+      <div style={{paddingBottom:'10px'}}>{ReactHtmlParser(recipe['summary'])}</div>
+      </div>
       <p>
-       <div><button className="buttonLink" onClick={btnClick}>I want to cook this!</button></div>
+       <div className="padding"><button className="buttonLink" onClick={btnClick}>I want to cook this!</button></div>
       
       </p>
     </div>
