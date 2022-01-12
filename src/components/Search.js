@@ -68,9 +68,39 @@ function Search() {
     let ingredients = list.map(x => x['item']).toString();
     console.log(ingredients);
 
+    const allergiesUrl = 'http://localhost:4000/api/allergies?' + `username=${user}`;
+
+    const allergies = fetch(allergiesUrl, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(response => console.log(response.json()));
+
+    const dietUrl = 'http://localhost:4000/api//dietary-restrictions?' + `username=${user}`;
+
+    const dietRes = fetch(dietUrl, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(response => console.log(response.json()));
+
     // Call route to database to get their health/diet information
     // Loop through each one, and then corss reference some data table for parameters
     
+    //original params = {...}
+    //fetch healthproblems
+    //for i in healthproblems {add dietary restriction to params (check if restriction is already in params)
+    //do the same for allergies/diet
 
     let searchUrl = recipeUrl + new URLSearchParams({
       limitLicense: 'false',
