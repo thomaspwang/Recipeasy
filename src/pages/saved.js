@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Recipes from "../components/Recipes.js";
 import {currUserAtom, savedAtom} from "../atoms.js";
 import {useAtom} from 'jotai';
@@ -45,21 +45,22 @@ const Saved = () => {
     });
 
     console.log(recipeResults);
-    return recipeResults;
+
+    return (
+      <div>
+        <h1>
+          Saved Recipes
+        </h1>
+        <div className="one">
+          {recipeResults.map(p=>(
+          <Recipes data={p}/>
+          ))}
+       </div>
+      </div>
+    );
   }
 
-  const recipes = findRecipes();
-  
-  return (
-    <div>
-      <h1>
-        Saved Recipes
-      </h1>
-      {/* <div>{response.map(p=>(
-        <Recipes data={p}/>
-        ))}</div> */}
-    </div>
-  );
+  return findRecipes();
 };
 
 export default Saved;
