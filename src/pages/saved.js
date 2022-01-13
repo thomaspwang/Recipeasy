@@ -61,7 +61,7 @@ const Saved = () => {
         <h1>
           Saved Recipes
         </h1>
-        <div>{recipeList.map(p=>(
+        <div style={{display:'flex', flexWrap:'wrap'}}>{recipeList.map(p=>(
           <Recipes data={p}/>
           ))}</div>
       </div>
