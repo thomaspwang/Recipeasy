@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Recipes from "../components/Recipes.js";
 import {currUserAtom, savedAtom} from "../atoms.js";
 import {useAtom} from 'jotai';
 
 const Saved = () => {
 
-  const [user, setUser] = useAtom(currUserAtom);
+  const [user, setUser] = useAtom(currUserAtom); 
+  const [recipeList, setRecipeList] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const endpoint = 'http://localhost:4000/api/recipes?' + `username=${user}`;
 
-  const findRecipes = async () => {
-    const recipeResults = await fetch(endpoint, {
+
+
+  useEffect(() => {
+    fetch(endpoint, {
       mode: 'cors',
       method: 'GET',
       headers: {
@@ -41,26 +45,37 @@ const Saved = () => {
           'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
           'x-rapidapi-key': '86d4a1f2eemsh7a4556407c59a5ap1334dajsn28d840fe7925',
         }
-      }).then(response => response.json());
+      })
+      .then(response => response.json());
+    })
+    .then(recipeData => {
+      setRecipeList(recipeData);
+      setLoaded(true);
     });
+  }, [loaded]);
 
-    console.log(recipeResults);
-
+  
+  if (recipeList.length > 0) {
     return (
       <div>
         <h1>
           Saved Recipes
         </h1>
-        <div className="one">
-          {recipeResults.map(p=>(
+        <div>{recipeList.map(p=>(
           <Recipes data={p}/>
-          ))}
-       </div>
+          ))}</div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h1>
+          Saved Recipes
+        </h1>
+        <div></div>
       </div>
     );
   }
-
-  return findRecipes();
 };
 
 export default Saved;
