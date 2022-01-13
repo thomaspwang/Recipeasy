@@ -70,7 +70,7 @@ function Search() {
 
     const allergiesUrl = 'http://localhost:4000/api/allergies?' + `username=${user}`;
 
-    const allergies = fetch(allergiesUrl, {
+    const allergies = await fetch(allergiesUrl, {
       mode: 'cors',
       method: 'GET',
       headers: {
@@ -79,12 +79,11 @@ function Search() {
         'Origin' : 'http://localhost:5000'
       }
     })
-    .then(response => console.log(response.json()))
-    //.then(data => data.toString());
+    .then(response => response.json());
 
     const dietUrl = 'http://localhost:4000/api/dietary-restrictions?' + `username=${user}`;
 
-    const dietRes = fetch(dietUrl, {
+    const dietRes = await fetch(dietUrl, {
       mode: 'cors',
       method: 'GET',
       headers: {
@@ -93,8 +92,7 @@ function Search() {
         'Origin' : 'http://localhost:5000'
       }
     })
-    .then(response => console.log(response.json()))
-   // .then(data => data.toString());
+    .then(response => response.json());
 
     // Call route to database to get their health/diet information
     // Loop through each one, and then corss reference some data table for parameters
@@ -104,16 +102,42 @@ function Search() {
     //for i in healthproblems {add dietary restriction to params (check if restriction is already in params)
     //do the same for allergies/diet
 
-    let searchUrl = recipeUrl + new URLSearchParams({
+    const healthUrl = 'http://localhost:4000/api/health-problems?' + `username=${user}`;
+    const healthProbs = await fetch(healthUrl, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(response => response.json());
+
+    var healthParams = {};
+    for (var i = 0; i < healthProbs.length; i++) {
+      healthParams = Object.assign({}, healthParams, healthProbs[i]);
+    }
+
+    var filterParams = {
       limitLicense: 'false',
       includeIngredients: ingredients,
       number: '100',
       addRecipeInformation: 'true',
       fillIngredients: 'true',
       instructionsRequired: 'true',
-  //intolerances: allergies.toString() ,
+      intolerances: allergies.toString(),
+      diet: dietRes.toString()
+    };
 
-    })
+    filterParams = Object.assign({}, filterParams, healthParams);
+    console.log(filterParams);
+
+    let params = new URLSearchParams(filterParams);
+
+    let searchUrl = decodeURIComponent(recipeUrl + params);
+
+    console.log(searchUrl);
 
     const response = await fetch(searchUrl, {
       mode: 'cors',
