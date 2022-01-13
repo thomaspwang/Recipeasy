@@ -79,9 +79,10 @@ function Search() {
         'Origin' : 'http://localhost:5000'
       }
     })
-    .then(response => console.log(response.json()));
+    .then(response => console.log(response.json()))
+    //.then(data => data.toString());
 
-    const dietUrl = 'http://localhost:4000/api//dietary-restrictions?' + `username=${user}`;
+    const dietUrl = 'http://localhost:4000/api/dietary-restrictions?' + `username=${user}`;
 
     const dietRes = fetch(dietUrl, {
       mode: 'cors',
@@ -92,7 +93,8 @@ function Search() {
         'Origin' : 'http://localhost:5000'
       }
     })
-    .then(response => console.log(response.json()));
+    .then(response => console.log(response.json()))
+   // .then(data => data.toString());
 
     // Call route to database to get their health/diet information
     // Loop through each one, and then corss reference some data table for parameters
@@ -109,6 +111,8 @@ function Search() {
       addRecipeInformation: 'true',
       fillIngredients: 'true',
       instructionsRequired: 'true',
+  //intolerances: allergies.toString() ,
+
     })
 
     const response = await fetch(searchUrl, {
