@@ -25,6 +25,29 @@ const Recipes = ({data}) => {
   const [recipe, setRecipe] = useAtom(dataAtom);
   const [user, setUser] = useAtom(currUserAtom);
 
+  const isSaved = () => {
+    const endpoint = 'http://localhost:4000/api/recipes?' + `username=${user}`;
+    
+    fetch(endpoint, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(result => result.json())
+    .then(savedRecipes => {
+      console.log(savedRecipes);
+
+      var isIn = savedRecipes.includes(data['id']);
+      console.log(isIn);
+      setSaved(isIn);
+    })
+    
+  }
+
   const saveRecipe = () => {
     //condition checking to change state from true to false and vice versa
     saved ? setSaved(false) : setSaved(true);
@@ -68,11 +91,77 @@ const Recipes = ({data}) => {
       }).then(response => console.log(response.json()));
     })
   };
+  const unsaveRecipe = () => {
+    //condition checking to change state from true to false and vice versa
+    saved ? setSaved(false) : setSaved(true);
+
+    const endpoint = 'http://localhost:4000/api/recipes?' + `username=${user}`;
+    console.log(endpoint);
+
+    fetch(endpoint, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(result => result.json())
+    .then(savedRecipes => {
+      console.log(savedRecipes);
+
+      savedRecipes = savedRecipes.filter(x => {return x !== data['id']});
+
+      return savedRecipes;
+    })
+    .then(newRecipes => {
+      console.log(newRecipes);
+      fetch("http://localhost:4000/api/recipes", {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Origin' : 'http://localhost:5000'
+        },
+        body: JSON.stringify({
+          "username" : user,
+          "recipes" : newRecipes
+        })
+      }).then(response => console.log(response.json()));
+    })
+  };
 
   const onLinkClick = () => {
     setRecipe(data);
   }
   //pull from api?
+    const endpoint = 'http://localhost:4000/api/recipes?' + `username=${user}`;
+    console.log(endpoint);
+
+    fetch(endpoint, {
+      mode: 'cors',
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin' : 'http://localhost:5000'
+      }
+    })
+    .then(result => result.json())
+    .then(savedRecipes => {
+      console.log(savedRecipes);
+
+      savedRecipes = savedRecipes.filter(x => {return x !== data['id']});
+
+      savedRecipes.push(data['id']);
+
+      return savedRecipes;
+    })
+    
+  isSaved();
+
   return (
     <Card style={{ width: '15.5rem' }}>
       <Link to={url} onClick={onLinkClick} style={linkStyle}><Card.Img variant="top" src={data['image']} /></Link>
@@ -85,7 +174,7 @@ const Recipes = ({data}) => {
             {saved ? (
               <img
                 style={{ cursor: "pointer" }}
-                onClick={saveRecipe}
+                onClick={unsaveRecipe}
                 src="http://cdn.onlinewebfonts.com/svg/img_107813.png"
                 width="15"
                 height="15"

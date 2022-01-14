@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Recipes from "../components/Recipes.js";
+import './saved.css';
 import {currUserAtom, savedAtom} from "../atoms.js";
 import {useAtom} from 'jotai';
 
