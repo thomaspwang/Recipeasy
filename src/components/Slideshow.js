@@ -9,14 +9,6 @@ const slideImages = [
     caption: 'RECIPEASY'
   },
   {
-    url: 'https://vitalitynow.org/uploads/428.jpeg',
-    caption: 'RECIPEASY'
-  },
-  {
-    url: 'https://vitalitynow.org/uploads/181.jpeg',
-    caption: 'RECIPEASY'
-  },
-  {
     url: 'https://img2.healthdigest.com/img/gallery/unhealthy-food-you-should-always-avoid-at-mexican-restaurants/l-intro-1608567609.jpg',
     caption: 'RECIPEASY'
   },
